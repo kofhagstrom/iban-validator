@@ -1,6 +1,6 @@
 class InvalidCountryError(Exception):
-    def __init__(self,country):
-        self.country=country
+    def __init__(self, country):
+        self.country = country
 
 
 class InvalidLengthError(Exception):
