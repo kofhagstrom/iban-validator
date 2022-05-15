@@ -6,3 +6,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 8080:80
+  test:
+    build:
+      context: .
+      target: test
+      dockerfile: Dockerfile

@@ -36,3 +36,24 @@ and then started by running
 
 In both cases above, the API can then be accessed on port 8080
 
+
+# Testing
+
+The repo contains tests in tests/test_validation.py. 
+
+If using docker-compose, the app Docker image can built (if not already built app above) by running
+
+> docker-compose build
+
+and the tests can then by run by running
+
+> docker-compose up test
+
+
+If using Docker, the test Docker image can be built by running
+
+> docker build -t iban-validator-test --target test .
+
+from the repo root. Tests are then run by running
+
+> docker run -it iban-validator-test

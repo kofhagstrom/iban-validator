@@ -9,6 +9,11 @@ RUN pip install -r requirements.txt
 COPY ./app ./app
 
 
+FROM base as test
+
+COPY ./tests ./tests
+
+ENTRYPOINT ["python3", "-m", "tests.test"]
 
 
 FROM base as app
