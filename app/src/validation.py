@@ -4,16 +4,20 @@ from app.src.exceptions import AlphaNumericError, InvalidCountryError, InvalidLe
 
 def iban_is_valid(iban: str) -> bool:
     """Validate a string containing an IBAN number."""
-
-    formatted_iban = _format_iban_string(iban)
-
+    
     if not formatted_iban.isalnum():
         raise AlphaNumericError
+
+    formatted_iban = _format_iban_string(iban)
 
     country = _get_iban_country(iban=formatted_iban)
 
     if not _iban_length_is_valid(iban=formatted_iban, country=country):
-        raise InvalidLengthError
+        raise InvalidLengthError(
+            length=len(formatted_iban),
+            expected_length=COUNTRY_TO_LENGTH[country],
+            country=country
+        )
 
     iban_integer = _iban_string_to_integer(iban=formatted_iban)
 
@@ -39,11 +43,11 @@ def _iban_string_to_integer(iban: str) -> int:
                         for letter in rearranged_iban]))
 
 
-def _get_iban_country(iban: str):
+def _get_iban_country(iban: str) -> str:
     """Extract country information from an IBAN string"""
     country = iban[:2]
 
     if country not in COUNTRY_TO_LENGTH.keys():
-        raise InvalidCountryError
+        raise InvalidCountryError(country=country)
 
     return country

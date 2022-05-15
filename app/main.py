@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 
 from app.src.exceptions import (AlphaNumericError, InvalidCountryError,
                                 InvalidLengthError)
-from app.src.iban import iban_is_valid
+from app.src.validation import iban_is_valid
 
 app = FastAPI()
 
@@ -14,10 +14,12 @@ def iban_validation(iban: str):
         is_valid = iban_is_valid(iban=iban)
     except AlphaNumericError:
         raise HTTPException(
-            status_code=400, detail="IBAN must only contain alphanumeric characters")
-    except InvalidCountryError:
-        raise HTTPException(status_code=400, detail="IBAN country is invalid")
-    except InvalidLengthError:
-        raise HTTPException(status_code=400, detail="IBAN length is invalid")
+            status_code=400, detail="IBAN must contain only alphanumeric characters")
+    except InvalidCountryError as exc:
+        raise HTTPException(status_code=400, detail=f"IBAN country is invalid. Got {exc.country}.")
+    except InvalidLengthError as exc:
+        raise HTTPException(
+            status_code=400, 
+            detail=f"IBAN length is invalid. Expected length {exc.expected_length} for country {exc.country}. Got length {exc.length}")
 
-    return {"valid": is_valid}
+    return {"iban_is_valid": is_valid}
