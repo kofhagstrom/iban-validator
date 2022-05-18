@@ -4,9 +4,9 @@ This repo contains a web server and REST API for validating IBAN numbers.
 
 The REST API is built using FastAPI, and has one endpoint 
 
-> GET api/v1/iban-validation/{iban}
+> GET api/v1/iban-validation/{IBAN}
 
-which validates the IBAN number given in "{iban}"
+which validates the IBAN number given by "IBAN".
 
 
 # Requirements
@@ -34,7 +34,7 @@ and then started by running
 > docker run -it -p 8080:80 iban-validator-app
 
 
-In both cases above, the API can then be accessed on port 8080
+In both cases above, the API can then be accessed on port 8080. API documentation can be viewed at localhost:8080/docs
 
 
 # Testing
