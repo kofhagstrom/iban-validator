@@ -1,2 +1,4 @@
 fastapi==0.78.0
 uvicorn[standard]
+pytest==7.1.2
+requests==2.23.0

@@ -13,7 +13,7 @@ FROM base as test
 
 COPY ./tests ./tests
 
-ENTRYPOINT ["python3", "-m", "tests.test"]
+ENTRYPOINT ["pytest"]
 
 
 FROM base as app
