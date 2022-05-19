@@ -30,7 +30,7 @@ def test_format_iban_string():
     assert _format_iban_string(iban=VALID_IBAN) == VALID_IBAN
     assert _format_iban_string(iban="al 352021 110900000000 01234567") == VALID_IBAN
     with pytest.raises(NonAlphaNumericError):
-        assert _format_iban_string(iban="!! aa .<.<. 01234567") == "!!AA.<.<.01234567"
+        _format_iban_string(iban="!! aa .<.<. 01234567")
 
 
 def test_iban_length_is_valid():
