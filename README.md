@@ -2,7 +2,7 @@
 
 This repo contains a web server and REST API for validating IBAN numbers.
 
-The REST API is built using FastAPI, and has one endpoint:
+The web server is implemented using uvicorn. The REST API is built using FastAPI, and has one endpoint:
 
 > GET api/v1/iban-validation/{IBAN}
 
