@@ -39,8 +39,12 @@ and then started by running
 > docker run -it -p 8080:80 iban-validator-app
 
 
-In both cases above, the API can then be accessed on port 8080. API documentation can be viewed at localhost:8080/docs.
+If running without Docker, install the requirements.txt file using pip, and then start the app by running e.g.
 
+> python3 -m uvicorn app.main:app --host 0.0.0.0 --port 8080
+
+
+In all cases, after startup, the API can be accessed on port 8080. API documentation can be viewed at localhost:8080/docs.
 
 # Testing
 
@@ -62,3 +66,10 @@ If using Docker, the test Docker image can be built by running
 from the repo root. Tests are then run by running
 
 > docker run -it iban-validator-test
+
+
+If running without docker, and having installed the requirements.txt file, run the tests by running
+
+> pytest
+
+at the root of the directory.
