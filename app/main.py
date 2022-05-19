@@ -30,6 +30,11 @@ app = FastAPI(
 
 @app.get("/api/v1/iban-validation/{iban}", response_model=IbanValidation)
 def iban_validation(iban: str):
+    """
+    Returns status code 200 if IBAN is correctly formatted, with schema 
+    key 'valid' being 'true' if IBAN number is valid, and 'false' otherwise.
+
+    Returns status code 422 if the IBAN string is incorrectly formatted"""
     try:
         is_valid = iban_is_valid(iban=iban)
         return IbanValidation(valid=is_valid)
